@@ -1,0 +1,32 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <form action="{% url 'polls:index' %}" method="post">
+        {% csrf_token %}
+        <input type="button" value="개발자에게 건의사항 보내기" onclick="any_message(this)"/>
+        <div id="textInput" style="display: none">
+            <textarea rows="5" cols="40" name="fb"></textarea>
+            <input type="submit" value="제출">
+        </div>
+    </form>
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+<script type="text/javascript">
+    function any_message(btnText) {
+        let textInput = document.getElementById("textInput");
+        textInput.style.display = btnText.value == "개발자에게 건의사항 보내기" ? "block" : "none";
+    }
+</script>

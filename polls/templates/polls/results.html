@@ -1,0 +1,25 @@
+<h1>{{ question2.question_text }}</h1>
+
+<ul>
+    {% for choice in votes_orderby %}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+{#    {% if question2.id == 3 %}#}
+{#        {% if  %}#}
+{#        {% if messages %}#}
+{#            {% for message in messages %}#}
+{#                {{ message }}을(를) 먹고싶습니다.#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    {% endif %}#}
+
+    <br>최고 득표: {{ votes_orderby.0 }}<p>
+
+    {% for etc_data in question2.etc_data_set.all %}
+        {{ etc_data.etc_text }}<br>
+    {% endfor %}
+
+</ul>
+
+<a href="{% url 'polls:detail' question2.id %}">Vote again?</a>
+<a href="{% url 'polls:index' %}">Goto index?</a>
