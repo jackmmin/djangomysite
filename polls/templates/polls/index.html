@@ -12,11 +12,66 @@
 
     <form action="{% url 'polls:index' %}" method="post">
         {% csrf_token %}
-        <input type="button" value="개발자에게 건의사항 보내기" onclick="any_message(this)"/>
-        <div id="textInput" style="display: none">
-            <textarea rows="5" cols="40" name="fb"></textarea>
-            <input type="submit" value="제출">
+        {#        <input type="button" value="개발자에게 건의사항 보내기" onclick="any_message(this)"/>#}
+        <div id="SearchLayer" align='center'
+             style="
+                 position:absolute;
+                 z-index:999;display:none;
+                 width:30%;
+                 height:50%;
+                 position: absolute;
+                 background: #000;
+                 border: 1px solid #304a8a;
+                 color: #fff;
+                 opacity: .5;
+                 filter: alpha(opacity=50);
+                 padding: 0 14px 0;
+                 border: 1px solid #304a8a;
+                 background-color: #3f5a9d;
+                 font-size: 13px;
+                 color: #fff;
+                 line-height: 25px;
+             ">
+            <div style="margin-top:1em; color:white;font-size:30px; text-align:center;">Hexlant</div>
+            <div onclick='CloseSearch()' style="color:white;font-size:3px; text-align:right;">Close</div>
+            <h2><input type='text' disabled value="홈페이지는 어떤가요?"
+                       style="
+                           text-align: center;
+                           color: white;
+                           background-color: #00ff0000;
+                           border-color:#00ff0000;
+                           font-size: 15px;
+                       "></h2>
+
+            {% for fb_c in fb_c_list %}
+                <div style="text-align: left">
+                    <input type="radio" name="fb_c" id="fb_c{{ forloop.counter }}" value="{{ fb_c.id }}">
+                    {{ fb_c.feedback_c_id }}
+                    {{ fb_c.feedback_c }}<br>
+                </div>
+            {% endfor %}
+
+            <h2><input type='text' disabled value="답변하신 이유를 알려주세요."
+                       style="
+                           text-align: center;
+                           color: white;
+                           background-color: #00ff0000;
+                           border-color:#00ff0000;
+                           font-size: 15px;
+                       "></h2>
+            <textarea rows="4" cols="30" name="fb_choice_text" id="" value=""
+                      style="
+                           text-align: left;
+                           color: black;
+                           border-color:black;
+                           font-size: 15px;
+                      "></textarea>
+            {#            <input type='submit'><br>#}
+            <p><input type="submit" value="제출"></p>
         </div>
+        {# 여기까지 form 내부 구조 #}
+
+        <a href="javascript:ViewSearch();">소중한 의견을 들려주세요</a>
     </form>
 
 {% else %}
@@ -25,8 +80,11 @@
 
 
 <script type="text/javascript">
-    function any_message(btnText) {
-        let textInput = document.getElementById("textInput");
-        textInput.style.display = btnText.value == "개발자에게 건의사항 보내기" ? "block" : "none";
+    function ViewSearch() {
+        document.getElementById("SearchLayer").style.display = 'inline'
+    }
+
+    function CloseSearch() {
+        document.getElementById("SearchLayer").style.display = 'none'
     }
 </script>

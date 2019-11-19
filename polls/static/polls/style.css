@@ -3,7 +3,11 @@ li a {
 }
 
 body {
-    background: white url("images/background.gif") no-repeat;
+    background: white url("images/background1.gif") no-repeat;
     background-size: 50% 30%;
 }
 
+#SearchLayer {
+  /*background-image: url("images/background_hexlant.png");*/
+  background: white url("images/background_hexlant.png");
+}
