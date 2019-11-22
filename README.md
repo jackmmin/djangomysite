@@ -128,14 +128,14 @@ INSTALLED_APPS = [
 ```
 	• 사진08. 모델 makemigrations -> migrate
 ![67689718-13fece00-f9df-11e9-9da0-00812e1ab64b](https://user-images.githubusercontent.com/49246977/69136547-5dce6600-0afe-11ea-9bbc-da44fa026755.PNG)
-
+```bash
 python manage.py makemigrations
 python manage.py migrate
+```
 ### 6. 데이터베이스에서 모델 확인
 	• 사진09. + 클릭 -> Data Source -> MySQL 클릭 -> 좌측에 Drivers는 MySQL 클릭 -> MySQL Connector설치
 ![9](https://user-images.githubusercontent.com/49246977/69136727-b998ef00-0afe-11ea-84ac-74b054734524.png)
 
-<
 	• 사진10. User(mysql ID, root), Password(mysql pw, 본인이 입력한했던 root의 pw), Database 입력 -> Test Connection 클릭
 ※ 만약 timezone 에러가 발생하면 mysql로 접속 후 set global time_zone='+0:00'; 입력 후 다시 Test Connection 클릭
 ![10](https://user-images.githubusercontent.com/49246977/69136758-c3225700-0afe-11ea-8a86-569cc2194d9b.png)
